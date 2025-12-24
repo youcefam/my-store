@@ -1,141 +1,186 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>متجري الإلكتروني</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-body{
-  font-family: Arial, sans-serif;
-  margin:0;
-  background:#f2f2f2;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    direction: rtl;
 }
-header{
-  background:#0d6efd;
-  color:white;
-  padding:15px;
-  text-align:center;
-  font-size:22px;
+
+header {
+    background: linear-gradient(135deg, #0d6efd, #0a58ca);
+    color: white;
+    padding: 25px;
+    text-align: center;
 }
-.container{
-  padding:15px;
+
+header h1 {
+    margin: 0;
+    font-size: 26px;
 }
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:15px;
+
+header p {
+    margin-top: 8px;
+    font-size: 14px;
+    opacity: 0.9;
 }
-.product{
-  background:white;
-  border-radius:12px;
-  padding:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.1);
-  text-align:center;
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
 }
-.product img{
-  width:100%;
-  height:150px;
-  object-fit:cover;
-  border-radius:10px;
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
 }
-.product h3{
-  font-size:16px;
-  margin:8px 0;
+
+.product {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
 }
-.price{
-  color:green;
-  font-weight:bold;
-  margin-bottom:10px;
+
+.product img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
 }
-button{
-  width:100%;
-  padding:10px;
-  background:green;
-  color:white;
-  border:none;
-  border-radius:8px;
-  font-size:15px;
-  cursor:pointer;
+
+.product-content {
+    padding: 15px;
 }
-button:hover{
-  background:#0a8a0a;
+
+.product h3 {
+    margin: 0 0 10px;
+}
+
+.price {
+    color: #198754;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.order-btn {
+    background: #198754;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.order-btn:hover {
+    background: #157347;
 }
 
 /* نموذج الطلب */
-#orderBox{
-  display:none;
-  background:white;
-  padding:15px;
-  border-radius:12px;
-  margin-top:20px;
-}
-input, select{
-  width:100%;
-  padding:10px;
-  margin-bottom:10px;
-  border-radius:6px;
-  border:1px solid #ccc;
-  font-size:15px;
-}
-.send{
-  background:#0d6efd;
+.form-section {
+    margin-top: 40px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-footer{
-  text-align:center;
-  padding:10px;
-  color:#777;
-  font-size:13px;
+.form-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+form button:hover {
+    background: #0a58ca;
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    padding: 15px;
+    color: #777;
+    background: #fff;
 }
 </style>
 </head>
 
 <body>
 
-<header>🛒 مرحبًا بكم في متجرنا</header>
+<header>
+    <h1>🛒 مرحبًا بك في متجرنا</h1>
+    <p>منتجات مميزة • طلب سريع • توصيل لكل الولايات</p>
+</header>
 
 <div class="container">
 
 <div class="products">
 
 <div class="product">
-<img src="https://via.placeholder.com/300x200?text=منتج+1">
-<h3>منتج 1</h3>
-<div class="price">2500 دج</div>
-<button onclick="openOrder('منتج 1 - 2500 دج')">اطلب الآن</button>
+    <img src="https://picsum.photos/400/300?1">
+    <div class="product-content">
+        <h3>ساعة ذكية</h3>
+        <div class="price">2500 دج</div>
+        <a href="#order" class="order-btn" onclick="selectProduct('ساعة ذكية')">اطلب الآن</a>
+    </div>
 </div>
 
 <div class="product">
-<img src="https://via.placeholder.com/300x200?text=منتج+2">
-<h3>منتج 2</h3>
-<div class="price">3200 دج</div>
-<button onclick="openOrder('منتج 2 - 3200 دج')">اطلب الآن</button>
+    <img src="https://picsum.photos/400/300?2">
+    <div class="product-content">
+        <h3>سماعات بلوتوث</h3>
+        <div class="price">3200 دج</div>
+        <a href="#order" class="order-btn" onclick="selectProduct('سماعات بلوتوث')">اطلب الآن</a>
+    </div>
 </div>
 
 <div class="product">
-<img src="https://via.placeholder.com/300x200?text=منتج+3">
-<h3>منتج 3</h3>
-<div class="price">1800 دج</div>
-<button onclick="openOrder('منتج 3 - 1800 دج')">اطلب الآن</button>
-</div>
-
-<div class="product">
-<img src="https://via.placeholder.com/300x200?text=منتج+4">
-<h3>منتج 4</h3>
-<div class="price">4100 دج</div>
-<button onclick="openOrder('منتج 4 - 4100 دج')">اطلب الآن</button>
+    <img src="https://picsum.photos/400/300?3">
+    <div class="product-content">
+        <h3>حقيبة جلدية</h3>
+        <div class="price">1800 دج</div>
+        <a href="#order" class="order-btn" onclick="selectProduct('حقيبة جلدية')">اطلب الآن</a>
+    </div>
 </div>
 
 </div>
 
 <!-- نموذج الطلب -->
-<div id="orderBox">
-<h3>📦 إتمام الطلب</h3>
+<div id="order" class="form-section">
+<h2>📦 نموذج الطلب</h2>
 
-<input id="name" placeholder="الاسم">
-<input id="phone" placeholder="رقم الهاتف">
-<select id="state">
+<form onsubmit="sendOrder(); return false;">
+<input type="text" id="name" placeholder="الاسم الكامل" required>
+<input type="tel" id="phone" placeholder="رقم الهاتف" required>
+
+<select id="state" required>
 <option value="">اختر الولاية</option>
 <option>الجزائر</option>
 <option>وهران</option>
@@ -144,34 +189,42 @@ footer{
 <option>سطيف</option>
 </select>
 
-<button class="send" onclick="sendOrder()">إرسال الطلب عبر واتساب</button>
+<input type="text" id="product" placeholder="المنتج" readonly>
+
+<button type="submit">إرسال الطلب عبر واتساب</button>
+</form>
 </div>
 
 </div>
 
-<footer>© 2025 متجري الإلكتروني</footer>
+<footer>
+© 2025 - متجري الإلكتروني
+</footer>
 
 <script>
 let selectedProduct = "";
 
-function openOrder(product){
-  selectedProduct = product;
-  document.getElementById("orderBox").style.display = "block";
-  window.scrollTo(0,document.body.scrollHeight);
+function selectProduct(product) {
+    selectedProduct = product;
+    document.getElementById("product").value = product;
 }
 
-function sendOrder(){
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const state = document.getElementById("state").value;
+function sendOrder() {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let state = document.getElementById("state").value;
+    let product = document.getElementById("product").value;
 
-  if(!name || !phone || !state){
-    alert("يرجى ملء جميع الحقول");
-    return;
-  }
+    let phoneNumber = "213772560757"; // ← غيره برقمك
 
-  const text = `طلب جديد:%0Aالمنتج: ${selectedProduct}%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالولاية: ${state}`;
-  window.open("https://wa.me/213772560757?text=" + text, "_blank");
+    let message = 
+        "طلب جديد:%0A" +
+        "الاسم: " + name + "%0A" +
+        "الهاتف: " + phone + "%0A" +
+        "الولاية: " + state + "%0A" +
+        "المنتج: " + product;
+
+    window.open("https://wa.me/" + phoneNumber + "?text=" + message, "_blank");
 }
 </script>
 
