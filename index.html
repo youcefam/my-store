@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,224 +7,168 @@
 
 <style>
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    direction: rtl;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
 }
 
 header {
-    background: linear-gradient(135deg, #0d6efd, #0a58ca);
-    color: white;
-    padding: 25px;
-    text-align: center;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 26px;
-}
-
-header p {
-    margin-top: 8px;
-    font-size: 14px;
-    opacity: 0.9;
+  background: #1e88e5;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
 }
 
 .container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
+  padding: 15px;
 }
 
 .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
 }
 
 .product {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    overflow: hidden;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
 .product img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-}
-
-.product-content {
-    padding: 15px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .product h3 {
-    margin: 0 0 10px;
+  margin: 10px 0;
 }
 
 .price {
-    color: #198754;
-    font-weight: bold;
-    margin-bottom: 10px;
+  color: green;
+  font-weight: bold;
+  font-size: 18px;
 }
 
-.order-btn {
-    background: #198754;
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
+.product button {
+  background: #1e88e5;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 90%;
+  margin: 10px;
+  border-radius: 8px;
+  font-size: 16px;
 }
 
-.order-btn:hover {
-    background: #157347;
+form {
+  background: white;
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 10px;
 }
 
-/* نموذج الطلب */
-.form-section {
-    margin-top: 40px;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.form-section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-form input, form select {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
 form button {
-    width: 100%;
-    padding: 12px;
-    background: #0d6efd;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-form button:hover {
-    background: #0a58ca;
-}
-
-footer {
-    margin-top: 30px;
-    text-align: center;
-    padding: 15px;
-    color: #777;
-    background: #fff;
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 18px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <h1>🛒 مرحبًا بك في متجرنا</h1>
-    <p>منتجات مميزة • طلب سريع • توصيل لكل الولايات</p>
-</header>
+<header>🛒 متجري الإلكتروني</header>
 
 <div class="container">
 
 <div class="products">
+  <div class="product">
+    <img src="images/watch.jpg">
+    <h3>ساعة أنيقة</h3>
+    <div class="price">3200 دج</div>
+    <button onclick="selectProduct('ساعة أنيقة')">اطلب الآن</button>
+  </div>
 
-<div class="product">
-    <img src="https://picsum.photos/400/300?1">
-    <div class="product-content">
-        <h3>ساعة ذكية</h3>
-        <div class="price">2500 دج</div>
-        <a href="#order" class="order-btn" onclick="selectProduct('ساعة ذكية')">اطلب الآن</a>
-    </div>
+  <div class="product">
+    <img src="images/pag.jpg">
+    <h3>حقيبة جلدية</h3>
+    <div class="price">2500 دج</div>
+    <button onclick="selectProduct('حقيبة جلدية')">اطلب الآن</button>
+  </div>
 </div>
 
-<div class="product">
-    <img src="https://picsum.photos/400/300?2">
-    <div class="product-content">
-        <h3>سماعات بلوتوث</h3>
-        <div class="price">3200 دج</div>
-        <a href="#order" class="order-btn" onclick="selectProduct('سماعات بلوتوث')">اطلب الآن</a>
-    </div>
-</div>
+<form onsubmit="sendWhatsApp(); return false;">
+  <h3>📦 نموذج الطلب</h3>
 
-<div class="product">
-    <img src="https://picsum.photos/400/300?3">
-    <div class="product-content">
-        <h3>حقيبة جلدية</h3>
-        <div class="price">1800 دج</div>
-        <a href="#order" class="order-btn" onclick="selectProduct('حقيبة جلدية')">اطلب الآن</a>
-    </div>
-</div>
+  <input type="text" id="name" placeholder="الاسم الكامل" required>
+  <input type="tel" id="phone" placeholder="رقم الهاتف" required>
 
-</div>
+  <select id="state" required>
+    <option value="">اختر الولاية</option>
+    <option>أدرار</option><option>الشلف</option><option>الأغواط</option>
+    <option>أم البواقي</option><option>باتنة</option><option>بجاية</option>
+    <option>بسكرة</option><option>بشار</option><option>البليدة</option>
+    <option>البويرة</option><option>تمنراست</option><option>تبسة</option>
+    <option>تلمسان</option><option>تيارت</option><option>تيزي وزو</option>
+    <option>الجزائر</option><option>الجلفة</option><option>جيجل</option>
+    <option>سطيف</option><option>سعيدة</option><option>سكيكدة</option>
+    <option>سيدي بلعباس</option><option>عنابة</option><option>قالمة</option>
+    <option>قسنطينة</option><option>المدية</option><option>مستغانم</option>
+    <option>المسيلة</option><option>معسكر</option><option>ورقلة</option>
+    <option>وهران</option><option>البيض</option><option>إليزي</option>
+    <option>برج بوعريريج</option><option>بومرداس</option><option>الطارف</option>
+    <option>تندوف</option><option>تيسمسيلت</option><option>الوادي</option>
+    <option>خنشلة</option><option>سوق أهراس</option><option>تيبازة</option>
+    <option>ميلة</option><option>عين الدفلى</option><option>النعامة</option>
+    <option>عين تموشنت</option><option>غرداية</option><option>غليزان</option>
+    <option>توقرت</option><option>جانت</option><option>المغير</option>
+    <option>المنيعة</option>
+  </select>
 
-<!-- نموذج الطلب -->
-<div id="order" class="form-section">
-<h2>📦 نموذج الطلب</h2>
+  <input type="text" id="product" placeholder="المنتج" readonly required>
 
-<form onsubmit="sendOrder(); return false;">
-<input type="text" id="name" placeholder="الاسم الكامل" required>
-<input type="tel" id="phone" placeholder="رقم الهاتف" required>
-
-<select id="state" required>
-<option value="">اختر الولاية</option>
-<option>الجزائر</option>
-<option>وهران</option>
-<option>قسنطينة</option>
-<option>عنابة</option>
-<option>سطيف</option>
-</select>
-
-<input type="text" id="product" placeholder="المنتج" readonly>
-
-<button type="submit">إرسال الطلب عبر واتساب</button>
+  <button type="submit">إرسال الطلب عبر واتساب</button>
 </form>
-</div>
 
 </div>
-
-<footer>
-© 2025 - متجري الإلكتروني
-</footer>
 
 <script>
-let selectedProduct = "";
-
-function selectProduct(product) {
-    selectedProduct = product;
-    document.getElementById("product").value = product;
+function selectProduct(name) {
+  document.getElementById("product").value = name;
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
 
-function sendOrder() {
-    let name = document.getElementById("name").value;
-    let phone = document.getElementById("phone").value;
-    let state = document.getElementById("state").value;
-    let product = document.getElementById("product").value;
+function sendWhatsApp() {
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let state = document.getElementById("state").value;
+  let product = document.getElementById("product").value;
 
-    let phoneNumber = "213772560757"; // ← غيره برقمك
+  let message =
+    "طلب جديد:%0A" +
+    "الاسم: " + name + "%0A" +
+    "الهاتف: " + phone + "%0A" +
+    "الولاية: " + state + "%0A" +
+    "المنتج: " + product;
 
-    let message = 
-        "طلب جديد:%0A" +
-        "الاسم: " + name + "%0A" +
-        "الهاتف: " + phone + "%0A" +
-        "الولاية: " + state + "%0A" +
-        "المنتج: " + product;
-
-    window.open("https://wa.me/" + phoneNumber + "?text=" + message, "_blank");
+  window.open("https://wa.me/213XXXXXXXXX?text=" + message, "_blank");
 }
 </script>
 
