@@ -2,240 +2,209 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>متجر إلكتروني</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>متجر الزيوت الطبيعية</title>
 
 <style>
-:root{
-  --main:#0f172a;
-  --accent:#22c55e;
-}
 body{
-  margin:0;
-  font-family:Tahoma,Arial;
-  background:#f3f4f6;
+    font-family:Tahoma,Arial;
+    margin:0;
+    background:#f5fff9;
 }
 header{
-  background:var(--main);
-  color:white;
-  padding:15px;
-  text-align:center;
-  font-size:22px;
-}
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:15px;
+    background:#3cb371;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
 }
 .products{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:15px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+    padding:15px;
 }
 .product{
-  background:white;
-  border-radius:12px;
-  padding:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,.08);
+    background:#fff;
+    border-radius:10px;
+    padding:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 .product img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  border-radius:10px;
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:8px;
 }
 .product h3{
-  margin:8px 0 5px;
-  font-size:16px;
+    margin:10px 0 5px;
 }
-.product p{
-  color:green;
-  font-weight:bold;
-  margin:0 0 8px;
+.desc, .use{
+    font-size:13px;
+    color:#444;
+    margin-bottom:5px;
 }
-.product button{
-  width:100%;
-  background:#2563eb;
-  color:white;
-  border:none;
-  padding:8px;
-  border-radius:6px;
-  font-size:15px;
+.price{
+    color:#2e8b57;
+    font-weight:bold;
+    margin:8px 0;
 }
-
+button{
+    background:#2e8b57;
+    color:#fff;
+    border:none;
+    padding:10px;
+    width:100%;
+    border-radius:6px;
+    cursor:pointer;
+}
 .cart, .order{
-  background:white;
-  margin-top:20px;
-  padding:15px;
-  border-radius:12px;
+    background:#fff;
+    margin:15px;
+    padding:15px;
+    border-radius:10px;
 }
-.cart-item{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:6px;
+input, select{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
 }
-.cart-item span{
-  font-size:14px;
+.confirm{
+    display:none;
+    background:#dfffea;
+    margin:15px;
+    padding:15px;
+    border-radius:10px;
+    color:#1b7a4c;
+    text-align:center;
+    font-weight:bold;
 }
-.cart-item button{
-  background:red;
-  color:white;
-  border:none;
-  padding:2px 6px;
-  border-radius:4px;
-}
-
-input,select{
-  width:100%;
-  padding:10px;
-  margin:6px 0;
-  border-radius:6px;
-  border:1px solid #ccc;
-}
-
-.send{
-  background:var(--accent);
-  color:white;
-  padding:12px;
-  border:none;
-  width:100%;
-  border-radius:8px;
-  font-size:18px;
-}
-
-.success{
-  display:none;
-  background:#dcfce7;
-  color:#166534;
-  padding:15px;
-  border-radius:10px;
-  margin-top:15px;
-  text-align:center;
-  font-weight:bold;
+footer{
+    text-align:center;
+    font-size:13px;
+    color:#555;
+    padding:10px;
 }
 </style>
 </head>
 
 <body>
 
-<header>🛒 متجر المنتجات المتنوعة</header>
+<header>🌿 متجر الزيوت والعلاجات الطبيعية 🌿</header>
 
-<div class="container">
+<section class="products" id="products"></section>
 
-<!-- المنتجات -->
-<div class="products">
-<script>
-const products=[
-["ساعة رجالية",4500],
-["ساعة رياضية",5200],
-["سماعة بلوتوث",3200],
-["نظارات شمسية",2500],
-["محفظة جلد",2800],
-["حزام رجالي",1900],
-["ساعة نسائية",4800],
-["سماعة رأس",5600],
-["شاحن سريع",2200],
-["باور بانك",6000],
-["عطر رجالي",7000],
-["عطر نسائي",6800],
-];
-
-products.forEach((p,i)=>{
-document.write(`
-<div class="product">
-<img src="images/product${i+1}.jpg">
-<h3>${p[0]}</h3>
-<p>${p[1]} دج</p>
-<button onclick="addToCart('${p[0]}',${p[1]})">إضافة للسلة</button>
-</div>
-`);
-});
-</script>
-</div>
-
-<!-- السلة -->
 <div class="cart">
-<h3>🛍️ عربة التسوق</h3>
-<div id="cartItems"></div>
-<p><strong>المجموع:</strong> <span id="total">0</span> دج</p>
+<h3>🛒 السلة</h3>
+<div id="cartItems">لا يوجد منتجات</div>
 </div>
 
-<!-- الطلب -->
 <div class="order">
-<h3>🚚 الدفع عند الاستلام</h3>
+<h3>📦 معلومات الطلب (الدفع عند الاستلام)</h3>
+<form onsubmit="sendWhatsApp(event)">
+<input id="name" placeholder="الاسم الكامل" required>
+<input id="phone" placeholder="رقم الهاتف" required>
 
-<input id="name" placeholder="الاسم الكامل">
-<input id="phone" placeholder="رقم الهاتف">
-
-<select id="state">
+<select id="state" required>
 <option value="">اختر الولاية</option>
-<option>الجزائر</option><option>وهران</option><option>قسنطينة</option>
-<option>عنابة</option><option>سطيف</option><option>باتنة</option>
-<option>بجاية</option><option>البليدة</option><option>الشلف</option>
+<script>
+const states=["أدرار","الشلف","الأغواط","باتنة","بجاية","الجزائر","سطيف","قسنطينة","وهران","عنابة","تيزي وزو","بسكرة","الجلفة","سكيكدة","المدية","مستغانم","غرداية","الوادي","ميلة","عين الدفلى","غليزان"];
+document.write(states.map(s=>`<option>${s}</option>`).join(""));
+</script>
 </select>
 
-<input id="city" placeholder="البلدية">
+<input id="city" placeholder="البلدية" required>
+<input id="qty" type="number" min="1" value="1" placeholder="الكمية" required>
 
-<button class="send" onclick="sendOrder()">تأكيد الطلب</button>
-
-<div class="success" id="successMsg">
-✅ تم تسجيل طلبك بنجاح، سنتصل بك قريبًا
-</div>
+<button type="submit">✅ تأكيد الطلب</button>
+</form>
 </div>
 
+<div class="confirm" id="confirmMsg">
+✅ تم إرسال الطلب على الواتساب، سنتواصل معك للتأكيد
 </div>
+
+<footer>© متجر الزيوت الطبيعية</footer>
 
 <script>
+const whatsappNumber = "213772560757";
+
+const products = [
+{
+name:"زيت التحصين المبارك",
+desc:"خليط زيوت طبيعية للراحة والطمأنينة",
+use:"يدهن مساءً على الجسم مع الذكر يوميًا",
+price:"2300"
+},
+{
+name:"بخاخ الوقاية الروحية",
+desc:"يساعد على السكينة والتوازن النفسي",
+use:"يرش صباحًا ومساءً في البيت",
+price:"2300"
+},
+{
+name:"زيت السكينة",
+desc:"يساعد على الاسترخاء والراحة",
+use:"يدهن قبل النوم",
+price:"2300"
+},
+{
+name:"زيت البركة",
+desc:"مستخلص طبيعي متعدد الفوائد",
+use:"يدهن على الجسم أو الرأس",
+price:"2300"
+},
+{
+name:"زيت النور",
+desc:"للطمأنينة والراحة النفسية",
+use:"يدهن مرة يوميًا",
+price:"2300"
+},
+{
+name:"بخاخ السكون",
+desc:"جو هادئ داخل المنزل",
+use:"يرش في أرجاء الغرفة",
+price:"2300"
+}
+];
+
 let cart=[];
 
-function addToCart(name,price){
-let item=cart.find(i=>i.name===name);
-if(item){item.qty++;}
-else{cart.push({name,price,qty:1});}
-render();
+document.getElementById("products").innerHTML = products.map((p,i)=>`
+<div class="product">
+<img src="https://via.placeholder.com/400x250?text=Product">
+<h3>${p.name}</h3>
+<div class="desc">${p.desc}</div>
+<div class="use"><b>طريقة الاستعمال:</b> ${p.use}</div>
+<div class="price">${p.price} دج</div>
+<button onclick="addToCart('${p.name}')">أضف إلى السلة</button>
+</div>
+`).join("");
+
+function addToCart(p){
+    cart.push(p);
+    document.getElementById("cartItems").innerHTML =
+        cart.map((c,i)=>`${i+1}- ${c}`).join("<br>");
 }
 
-function removeItem(name){
-cart=cart.filter(i=>i.name!==name);
-render();
-}
-
-function render(){
-let c=document.getElementById("cartItems");
-c.innerHTML="";
-let total=0;
-cart.forEach(i=>{
-total+=i.price*i.qty;
-c.innerHTML+=`
-<div class="cart-item">
-<span>${i.name} × ${i.qty}</span>
-<button onclick="removeItem('${i.name}')">×</button>
-</div>`;
-});
-document.getElementById("total").innerText=total;
-}
-
-function sendOrder(){
-if(cart.length===0){alert("السلة فارغة");return;}
-let name=nameInput.value=nameInput||document.getElementById("name").value;
-let phone=document.getElementById("phone").value;
-let state=document.getElementById("state").value;
-let city=document.getElementById("city").value;
-
-if(!name||!phone||!state||!city){
-alert("يرجى ملء جميع الحقول");return;
-}
-
-let msg="🛒 طلب جديد%0A";
-cart.forEach(i=>{
-msg+=`- ${i.name} × ${i.qty}%0A`;
-});
-msg+=`%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالولاية: ${state}%0Aالبلدية: ${city}%0Aالدفع: عند الاستلام`;
-
-window.open("https://wa.me/213772560757?text="+msg,"_blank");
-document.getElementById("successMsg").style.display="block";
-cart=[];
-render();
+function sendWhatsApp(e){
+    e.preventDefault();
+    let msg = `
+طلب جديد:
+الاسم: ${name.value}
+الهاتف: ${phone.value}
+الولاية: ${state.value}
+البلدية: ${city.value}
+الكمية: ${qty.value}
+المنتجات: ${cart.join(", ")}
+الدفع عند الاستلام
+`;
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`);
+    document.getElementById("confirmMsg").style.display="block";
+    cart=[];
+    document.getElementById("cartItems").innerHTML="لا يوجد منتجات";
+    e.target.reset();
 }
 </script>
 
