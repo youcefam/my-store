@@ -9,14 +9,14 @@
 body{
   font-family: Arial, sans-serif;
   margin:0;
-  background:#f4f4f4;
+  background:#f2f2f2;
 }
 header{
   background:#0d6efd;
   color:white;
   padding:15px;
   text-align:center;
-  font-size:20px;
+  font-size:22px;
 }
 .container{
   padding:15px;
@@ -28,9 +28,9 @@ header{
 }
 .product{
   background:white;
-  border-radius:10px;
+  border-radius:12px;
   padding:10px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
   text-align:center;
 }
 .product img{
@@ -41,7 +41,7 @@ header{
 }
 .product h3{
   font-size:16px;
-  margin:10px 0 5px;
+  margin:8px 0;
 }
 .price{
   color:green;
@@ -61,6 +61,27 @@ button{
 button:hover{
   background:#0a8a0a;
 }
+
+/* نموذج الطلب */
+#orderBox{
+  display:none;
+  background:white;
+  padding:15px;
+  border-radius:12px;
+  margin-top:20px;
+}
+input, select{
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+.send{
+  background:#0d6efd;
+}
+
 footer{
   text-align:center;
   padding:10px;
@@ -75,52 +96,82 @@ footer{
 <header>🛒 مرحبًا بكم في متجرنا</header>
 
 <div class="container">
-  <div class="products">
 
-    <!-- منتج 1 -->
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200?text=منتج+1">
-      <h3>منتج 1</h3>
-      <div class="price">2500 دج</div>
-      <button onclick="order('منتج 1 - 2500 دج')">اطلب الآن</button>
-    </div>
+<div class="products">
 
-    <!-- منتج 2 -->
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200?text=منتج+2">
-      <h3>منتج 2</h3>
-      <div class="price">3200 دج</div>
-      <button onclick="order('منتج 2 - 3200 دج')">اطلب الآن</button>
-    </div>
-
-    <!-- منتج 3 -->
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200?text=منتج+3">
-      <h3>منتج 3</h3>
-      <div class="price">1800 دج</div>
-      <button onclick="order('منتج 3 - 1800 دج')">اطلب الآن</button>
-    </div>
-
-    <!-- منتج 4 -->
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200?text=منتج+4">
-      <h3>منتج 4</h3>
-      <div class="price">4100 دج</div>
-      <button onclick="order('منتج 4 - 4100 دج')">اطلب الآن</button>
-    </div>
-
-  </div>
+<div class="product">
+<img src="https://via.placeholder.com/300x200?text=منتج+1">
+<h3>منتج 1</h3>
+<div class="price">2500 دج</div>
+<button onclick="openOrder('منتج 1 - 2500 دج')">اطلب الآن</button>
 </div>
 
-<footer>
-© 2025 متجري الإلكتروني
-</footer>
+<div class="product">
+<img src="https://via.placeholder.com/300x200?text=منتج+2">
+<h3>منتج 2</h3>
+<div class="price">3200 دج</div>
+<button onclick="openOrder('منتج 2 - 3200 دج')">اطلب الآن</button>
+</div>
+
+<div class="product">
+<img src="https://via.placeholder.com/300x200?text=منتج+3">
+<h3>منتج 3</h3>
+<div class="price">1800 دج</div>
+<button onclick="openOrder('منتج 3 - 1800 دج')">اطلب الآن</button>
+</div>
+
+<div class="product">
+<img src="https://via.placeholder.com/300x200?text=منتج+4">
+<h3>منتج 4</h3>
+<div class="price">4100 دج</div>
+<button onclick="openOrder('منتج 4 - 4100 دج')">اطلب الآن</button>
+</div>
+
+</div>
+
+<!-- نموذج الطلب -->
+<div id="orderBox">
+<h3>📦 إتمام الطلب</h3>
+
+<input id="name" placeholder="الاسم">
+<input id="phone" placeholder="رقم الهاتف">
+<select id="state">
+<option value="">اختر الولاية</option>
+<option>الجزائر</option>
+<option>وهران</option>
+<option>قسنطينة</option>
+<option>عنابة</option>
+<option>سطيف</option>
+</select>
+
+<button class="send" onclick="sendOrder()">إرسال الطلب عبر واتساب</button>
+</div>
+
+</div>
+
+<footer>© 2025 متجري الإلكتروني</footer>
 
 <script>
-function order(product){
-  const phone = "0772560757";
-  const text = encodeURIComponent("السلام عليكم، أريد طلب: " + product);
-  window.open("https://wa.me/213" + phone + "?text=" + text, "_blank");
+let selectedProduct = "";
+
+function openOrder(product){
+  selectedProduct = product;
+  document.getElementById("orderBox").style.display = "block";
+  window.scrollTo(0,document.body.scrollHeight);
+}
+
+function sendOrder(){
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const state = document.getElementById("state").value;
+
+  if(!name || !phone || !state){
+    alert("يرجى ملء جميع الحقول");
+    return;
+  }
+
+  const text = `طلب جديد:%0Aالمنتج: ${selectedProduct}%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالولاية: ${state}`;
+  window.open("https://wa.me/213772560757?text=" + text, "_blank");
 }
 </script>
 
