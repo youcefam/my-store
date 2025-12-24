@@ -1,44 +1,100 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>My Store</title>
+  <title>متجري</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 15px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .product {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    select, input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 12px;
+      background: green;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+  </style>
 </head>
+
 <body>
 
-  <h1>🛒 Ma Boutique</h1>
+<h1>🛒 متجري</h1>
 
-  <!-- منتج -->
-  <div class="product">
-    <h2>Produit 1</h2>
-    <p>Prix : <span id="price">2500</span> DA</p>
+<div class="product">
+  <h2>منتج 1</h2>
+  <p>السعر: <strong>2500 دج</strong></p>
 
-    <label>Quantité :</label>
-    <select id="quantity">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-    </select>
-  </div>
+  <label>الكمية:</label>
+  <select id="quantity">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
 
-  <!-- معلومات الزبون -->
-  <div class="form">
-    <input type="text" id="name" placeholder="Nom complet">
-    <input type="tel" id="phone" placeholder="Téléphone">
+  <label>الولاية:</label>
+  <select id="state">
+    <option>اختر الولاية</option>
+    <option>الجزائر</option>
+    <option>وهران</option>
+    <option>قسنطينة</option>
+    <option>سطيف</option>
+  </select>
 
-    <label>Wilaya :</label>
-    <select id="wilaya">
-      <option>Alger</option>
-      <option>Oran</option>
-      <option>Constantine</option>
-      <option>Autre</option>
-    </select>
+  <label>الاسم:</label>
+  <input type="text" id="name" placeholder="اسمك">
 
-    <button onclick="acheter()">Commander via WhatsApp</button>
-  </div>
+  <label>رقم الهاتف:</label>
+  <input type="tel" id="phone" placeholder="0772560757">
 
-  <script src="script.js"></script>
+  <button onclick="sendOrder()">اطلب الآن</button>
+</div>
+
+<script>
+function sendOrder() {
+  var name = document.getElementById("name").value;
+  var phone = document.getElementById("phone").value;
+  var quantity = document.getElementById("quantity").value;
+  var state = document.getElementById("state").value;
+
+  var message =
+    "طلب جديد:%0A" +
+    "الاسم: " + name + "%0A" +
+    "الهاتف: " + phone + "%0A" +
+    "الكمية: " + quantity + "%0A" +
+    "الولاية: " + state;
+
+  var whatsappNumber = "213772560757";
+
+  window.open("https://wa.me/" + whatsappNumber + "?text=" + message, "_blank");
+}
+</script>
+
 </body>
 </html>
