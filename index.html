@@ -1,130 +1,151 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>متجري</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>متجر إلكتروني</title>
 
 <style>
-body {
+body{
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  margin: 0;
-  direction: rtl;
+  background:#f2f2f2;
+  margin:0;
 }
-
-header {
-  background: #111;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  font-size: 22px;
+header{
+  background:#111;
+  color:#fff;
+  padding:15px;
+  text-align:center;
+  font-size:22px;
 }
-
-.container {
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+.container{
+  max-width:420px;
+  margin:20px auto;
+  background:#fff;
+  padding:15px;
+  border-radius:12px;
 }
-
-.product {
-  background: white;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.product{
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:15px;
 }
-
-.product img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
+.product img{
+  width:100%;
+  border-radius:10px;
 }
-
-.product h3 {
-  margin: 10px 0;
+.product h3{
+  margin:10px 0 5px;
 }
-
-.product input, .product select {
-  width: 100%;
-  padding: 10px;
-  margin: 6px 0;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+.product p{
+  margin:0;
+  color:#555;
 }
-
-button {
-  background: #25D366;
-  color: white;
-  border: none;
-  padding: 12px;
-  width: 100%;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
+select,input{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
 }
-
-button:hover {
-  background: #1ebc59;
+button{
+  width:100%;
+  padding:14px;
+  background:#25D366;
+  color:white;
+  border:none;
+  border-radius:10px;
+  font-size:18px;
+}
+.footer{
+  text-align:center;
+  font-size:12px;
+  color:#777;
+  margin-top:10px;
 }
 </style>
-
-<script>
-function order(product) {
-  let name = document.getElementById(product + "_name").value;
-  let phone = document.getElementById(product + "_phone").value;
-  let state = document.getElementById(product + "_state").value;
-
-  if(name === "" || phone === "" || state === ""){
-    alert("يرجى ملء جميع المعلومات");
-    return;
-  }
-
-  let msg = `طلب جديد:%0A
-المنتج: ${product}%0A
-الاسم: ${name}%0A
-الهاتف: ${phone}%0A
-الولاية: ${state}`;
-
-  window.open("https://wa.me/213772560757?text=" + msg, "_blank");
-}
-</script>
 </head>
 
 <body>
 
-<header>🛒 مرحبا بكم في متجرنا</header>
+<header>🛒 متجر الساعات والإكسسوارات</header>
 
 <div class="container">
 
-<!-- منتج -->
-<div class="product">
-  <img src="images/watch.jpg">
-  <h3>ساعة رجالية فاخرة</h3>
+  <!-- اختيار المنتج -->
+  <label>اختر المنتج</label>
+  <select id="product">
+    <option value="ساعة رجالية فاخرة">ساعة رجالية فاخرة</option>
+    <option value="ساعة رياضية">ساعة رياضية</option>
+    <option value="محفظة رجالية">محفظة رجالية</option>
+  </select>
 
-  <input id="watch_name" placeholder="الاسم الكامل">
-  <input id="watch_phone" placeholder="رقم الهاتف">
+  <!-- صورة المنتج -->
+  <img id="productImage" src="images/watch.jpg" style="width:100%;border-radius:10px;margin-top:10px;">
 
-  <select id="watch_state">
+  <input id="name" placeholder="الاسم الكامل">
+  <input id="phone" placeholder="رقم الهاتف">
+
+  <label>الولاية</label>
+  <select id="state">
     <option value="">اختر الولاية</option>
     <option>الجزائر</option><option>وهران</option><option>قسنطينة</option>
     <option>عنابة</option><option>سطيف</option><option>باتنة</option>
-    <option>بجاية</option><option>سكيكدة</option><option>تلمسان</option>
-    <option>البليدة</option><option>تيزي وزو</option><option>بسكرة</option>
-    <option>الجلفة</option><option>الأغواط</option><option>أدرار</option>
-    <option>ورقلة</option><option>غرداية</option><option>تيارت</option>
-    <option>سعيدة</option><option>المدية</option><option>الشلف</option>
-    <option>مستغانم</option><option>معسكر</option><option>ميلة</option>
-    <option>خنشلة</option><option>سوق أهراس</option><option>قالمة</option>
-    <option>الطارف</option><option>الوادي</option><option>تبسة</option>
-    <option>تمنراست</option><option>إليزي</option><option>تندوف</option>
+    <option>تيزي وزو</option><option>بجاية</option><option>البليدة</option>
+    <option>الشلف</option><option>سكيكدة</option><option>بسكرة</option>
+    <option>ورقلة</option><option>غرداية</option><option>تلمسان</option>
+    <option>تيارت</option><option>سعيدة</option><option>معسكر</option>
+    <option>أدرار</option><option>الوادي</option><option>خنشلة</option>
+    <option>سوق أهراس</option><option>ميلة</option><option>جيجل</option>
+    <option>قالمة</option><option>المدية</option><option>عين الدفلى</option>
+    <option>البيض</option><option>النعامة</option><option>تندوف</option>
+    <option>إليزي</option><option>تيميمون</option>
   </select>
 
-  <button onclick="order('ساعة رجالية')">اطلب عبر واتساب</button>
+  <input id="qty" type="number" value="1" min="1" placeholder="الكمية">
+
+  <button onclick="sendOrder()">اطلب عبر واتساب</button>
+
+  <div class="footer">📦 التوصيل لكل الولايات</div>
 </div>
 
-</div>
+<script>
+const productSelect = document.getElementById("product");
+const productImage = document.getElementById("productImage");
+
+productSelect.onchange = function(){
+  if(this.value.includes("محفظة")){
+    productImage.src = "images/pag.jpg";
+  }else{
+    productImage.src = "images/watch.jpg";
+  }
+};
+
+function sendOrder(){
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let state = document.getElementById("state").value;
+  let qty = document.getElementById("qty").value;
+  let product = productSelect.value;
+
+  if(!name || !phone || !state){
+    alert("يرجى ملء جميع المعلومات");
+    return;
+  }
+
+  let message =
+  "🛒 طلب جديد\n\n"+
+  "📦 المنتج: "+product+"\n"+
+  "🔢 الكمية: "+qty+"\n"+
+  "👤 الاسم: "+name+"\n"+
+  "📞 الهاتف: "+phone+"\n"+
+  "📍 الولاية: "+state;
+
+  let url = "https://wa.me/213772560757?text=" + encodeURIComponent(message);
+  window.open(url,"_blank");
+}
+</script>
 
 </body>
 </html>
