@@ -1,176 +1,108 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>متجري الإلكتروني</title>
+  <meta charset="UTF-8">
+  <title>متجري</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  margin: 0;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      direction: rtl;
+    }
 
-header {
-  background: #1e88e5;
-  color: white;
-  padding: 15px;
-  text-align: center;
-  font-size: 22px;
-}
+    header {
+      background: #111;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 22px;
+    }
 
-.container {
-  padding: 15px;
-}
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
 
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-}
+    .product {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
 
-.product {
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  text-align: center;
-}
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
 
-.product img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
+    .product h3 {
+      margin: 10px 0 5px;
+    }
 
-.product h3 {
-  margin: 10px 0;
-}
+    .product p {
+      color: #555;
+      margin: 5px 0;
+    }
 
-.price {
-  color: green;
-  font-weight: bold;
-  font-size: 18px;
-}
+    .product button {
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
 
-.product button {
-  background: #1e88e5;
-  color: white;
-  border: none;
-  padding: 10px;
-  width: 90%;
-  margin: 10px;
-  border-radius: 8px;
-  font-size: 16px;
-}
+    .product button:hover {
+      background: #333;
+    }
 
-form {
-  background: white;
-  margin-top: 25px;
-  padding: 15px;
-  border-radius: 10px;
-}
-
-input, select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-form button {
-  background: #25D366;
-  color: white;
-  border: none;
-  padding: 12px;
-  width: 100%;
-  border-radius: 8px;
-  font-size: 18px;
-}
-</style>
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #111;
+      color: #fff;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>🛒 متجري الإلكتروني</header>
+  <header>
+    🛒 مرحبًا بكم في متجري
+  </header>
 
-<div class="container">
+  <div class="container">
 
-<div class="products">
-  <div class="product">
-    <img src="images/watch.jpg">
-    <h3>ساعة أنيقة</h3>
-    <div class="price">3200 دج</div>
-    <button onclick="selectProduct('ساعة أنيقة')">اطلب الآن</button>
+    <div class="product">
+      <img src="images/watch.jpg" alt="ساعة">
+      <h3>ساعة فاخرة</h3>
+      <p>سعر: 50$</p>
+      <button>اطلب الآن</button>
+    </div>
+
+    <div class="product">
+      <img src="images/pag.jpg" alt="منتج">
+      <h3>منتج مميز</h3>
+      <p>سعر: 30$</p>
+      <button>اطلب الآن</button>
+    </div>
+
   </div>
 
-  <div class="product">
-    <img src="images/pag.jpg">
-    <h3>حقيبة جلدية</h3>
-    <div class="price">2500 دج</div>
-    <button onclick="selectProduct('حقيبة جلدية')">اطلب الآن</button>
-  </div>
-</div>
-
-<form onsubmit="sendWhatsApp(); return false;">
-  <h3>📦 نموذج الطلب</h3>
-
-  <input type="text" id="name" placeholder="الاسم الكامل" required>
-  <input type="tel" id="phone" placeholder="رقم الهاتف" required>
-
-  <select id="state" required>
-    <option value="">اختر الولاية</option>
-    <option>أدرار</option><option>الشلف</option><option>الأغواط</option>
-    <option>أم البواقي</option><option>باتنة</option><option>بجاية</option>
-    <option>بسكرة</option><option>بشار</option><option>البليدة</option>
-    <option>البويرة</option><option>تمنراست</option><option>تبسة</option>
-    <option>تلمسان</option><option>تيارت</option><option>تيزي وزو</option>
-    <option>الجزائر</option><option>الجلفة</option><option>جيجل</option>
-    <option>سطيف</option><option>سعيدة</option><option>سكيكدة</option>
-    <option>سيدي بلعباس</option><option>عنابة</option><option>قالمة</option>
-    <option>قسنطينة</option><option>المدية</option><option>مستغانم</option>
-    <option>المسيلة</option><option>معسكر</option><option>ورقلة</option>
-    <option>وهران</option><option>البيض</option><option>إليزي</option>
-    <option>برج بوعريريج</option><option>بومرداس</option><option>الطارف</option>
-    <option>تندوف</option><option>تيسمسيلت</option><option>الوادي</option>
-    <option>خنشلة</option><option>سوق أهراس</option><option>تيبازة</option>
-    <option>ميلة</option><option>عين الدفلى</option><option>النعامة</option>
-    <option>عين تموشنت</option><option>غرداية</option><option>غليزان</option>
-    <option>توقرت</option><option>جانت</option><option>المغير</option>
-    <option>المنيعة</option>
-  </select>
-
-  <input type="text" id="product" placeholder="المنتج" readonly required>
-
-  <button type="submit">إرسال الطلب عبر واتساب</button>
-</form>
-
-</div>
-
-<script>
-function selectProduct(name) {
-  document.getElementById("product").value = name;
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
-
-function sendWhatsApp() {
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let state = document.getElementById("state").value;
-  let product = document.getElementById("product").value;
-
-  let message =
-    "طلب جديد:%0A" +
-    "الاسم: " + name + "%0A" +
-    "الهاتف: " + phone + "%0A" +
-    "الولاية: " + state + "%0A" +
-    "المنتج: " + product;
-
-  window.open("https://wa.me/213XXXXXXXXX?text=" + message, "_blank");
-}
-</script>
+  <footer>
+    © 2025 - جميع الحقوق محفوظة
+  </footer>
 
 </body>
 </html>
