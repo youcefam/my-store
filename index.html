@@ -1,128 +1,130 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>متجري</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>متجري</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      direction: rtl;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  direction: rtl;
+}
 
-    header {
-      background: #111;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 22px;
-    }
+header {
+  background: #111;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 22px;
+}
 
-    .container {
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+.container {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
 
-    .product {
-      background: white;
-      border-radius: 10px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
+.product {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 
-    .product img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
+.product img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 
-    .product h3 {
-      margin: 10px 0;
-    }
+.product h3 {
+  margin: 10px 0;
+}
 
-    .product p {
-      color: #444;
-      font-size: 16px;
-    }
+.product input, .product select {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
 
-    .product a button {
-      background: #25D366;
-      color: white;
-      border: none;
-      padding: 12px;
-      width: 100%;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
+button {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
-    .product a button:hover {
-      background: #1ebc59;
-    }
+button:hover {
+  background: #1ebc59;
+}
+</style>
 
-    footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 20px;
-      font-size: 14px;
-    }
-  </style>
+<script>
+function order(product) {
+  let name = document.getElementById(product + "_name").value;
+  let phone = document.getElementById(product + "_phone").value;
+  let state = document.getElementById(product + "_state").value;
+
+  if(name === "" || phone === "" || state === ""){
+    alert("يرجى ملء جميع المعلومات");
+    return;
+  }
+
+  let msg = `طلب جديد:%0A
+المنتج: ${product}%0A
+الاسم: ${name}%0A
+الهاتف: ${phone}%0A
+الولاية: ${state}`;
+
+  window.open("https://wa.me/213772560757?text=" + msg, "_blank");
+}
+</script>
 </head>
 
 <body>
 
-<header>
-  🛒 مرحبا بكم في متجرنا
-</header>
+<header>🛒 مرحبا بكم في متجرنا</header>
 
 <div class="container">
 
-  <!-- المنتج 1 -->
-  <div class="product">
-    <img src="images/watch.jpg" alt="ساعة">
-    <h3>ساعة رجالية فاخرة</h3>
-    <p>سعر: 4500 دج</p>
-    <a href="https://wa.me/213772560757?text=أريد%20طلب%20ساعة%20رجالية" target="_blank">
-      <button>اطلب الآن</button>
-    </a>
-  </div>
+<!-- منتج -->
+<div class="product">
+  <img src="images/watch.jpg">
+  <h3>ساعة رجالية فاخرة</h3>
 
-  <!-- المنتج 2 -->
-  <div class="product">
-    <img src="images/pag.jpg" alt="منتج">
-    <h3>منتج مميز</h3>
-    <p>سعر: 3200 دج</p>
-    <a href="https://wa.me/213772560757?text=أريد%20طلب%20هذا%20المنتج" target="_blank">
-      <button>اطلب الآن</button>
-    </a>
-  </div>
+  <input id="watch_name" placeholder="الاسم الكامل">
+  <input id="watch_phone" placeholder="رقم الهاتف">
 
-  <!-- المنتج 3 -->
-  <div class="product">
-    <img src="images/product3.jpg" alt="منتج">
-    <h3>منتج ثالث</h3>
-    <p>سعر: 3900 دج</p>
-    <a href="https://wa.me/213772560757?text=أريد%20طلب%20المنتج%20الثالث" target="_blank">
-      <button>اطلب الآن</button>
-    </a>
-  </div>
+  <select id="watch_state">
+    <option value="">اختر الولاية</option>
+    <option>الجزائر</option><option>وهران</option><option>قسنطينة</option>
+    <option>عنابة</option><option>سطيف</option><option>باتنة</option>
+    <option>بجاية</option><option>سكيكدة</option><option>تلمسان</option>
+    <option>البليدة</option><option>تيزي وزو</option><option>بسكرة</option>
+    <option>الجلفة</option><option>الأغواط</option><option>أدرار</option>
+    <option>ورقلة</option><option>غرداية</option><option>تيارت</option>
+    <option>سعيدة</option><option>المدية</option><option>الشلف</option>
+    <option>مستغانم</option><option>معسكر</option><option>ميلة</option>
+    <option>خنشلة</option><option>سوق أهراس</option><option>قالمة</option>
+    <option>الطارف</option><option>الوادي</option><option>تبسة</option>
+    <option>تمنراست</option><option>إليزي</option><option>تندوف</option>
+  </select>
 
+  <button onclick="order('ساعة رجالية')">اطلب عبر واتساب</button>
 </div>
 
-<footer>
-  📞 الطلب عبر واتساب: 0772560757
-</footer>
+</div>
 
 </body>
 </html>
