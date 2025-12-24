@@ -2,99 +2,40 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>متجري</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      margin: 0;
-      padding: 15px;
-    }
-    h1 {
-      text-align: center;
-    }
-    .product {
-      background: #fff;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-    }
-    select, input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-    }
-    button {
-      margin-top: 15px;
-      width: 100%;
-      padding: 12px;
-      background: green;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-  </style>
+  <title>متجري الإلكتروني</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h1>🛒 متجري</h1>
+<header>
+  <h1>🛒 متجري الإلكتروني</h1>
+  <p>أفضل المنتجات بأفضل الأسعار</p>
+</header>
 
-<div class="product">
-  <h2>منتج 1</h2>
-  <p>السعر: <strong>2500 دج</strong></p>
+<section class="products">
 
-  <label>الكمية:</label>
-  <select id="quantity">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
+  <div class="product">
+    <img src="https://via.placeholder.com/200" alt="منتج 1">
+    <h3>منتج 1</h3>
+    <p>السعر: 2500 دج</p>
+    <button>اطلب الآن</button>
+  </div>
 
-  <label>الولاية:</label>
-  <select id="state">
-    <option>اختر الولاية</option>
-    <option>الجزائر</option>
-    <option>وهران</option>
-    <option>قسنطينة</option>
-    <option>سطيف</option>
-  </select>
+  <div class="product">
+    <img src="https://via.placeholder.com/200" alt="منتج 2">
+    <h3>منتج 2</h3>
+    <p>السعر: 3000 دج</p>
+    <button>اطلب الآن</button>
+  </div>
 
-  <label>الاسم:</label>
-  <input type="text" id="name" placeholder="اسمك">
+  <div class="product">
+    <img src="https://via.placeholder.com/200" alt="منتج 3">
+    <h3>منتج 3</h3>
+    <p>السعر: 1800 دج</p>
+    <button>اطلب الآن</button>
+  </div>
 
-  <label>رقم الهاتف:</label>
-  <input type="tel" id="phone" placeholder="0772560757">
-
-  <button onclick="sendOrder()">اطلب الآن</button>
-</div>
-
-<script>
-function sendOrder() {
-  var name = document.getElementById("name").value;
-  var phone = document.getElementById("phone").value;
-  var quantity = document.getElementById("quantity").value;
-  var state = document.getElementById("state").value;
-
-  var message =
-    "طلب جديد:%0A" +
-    "الاسم: " + name + "%0A" +
-    "الهاتف: " + phone + "%0A" +
-    "الكمية: " + quantity + "%0A" +
-    "الولاية: " + state;
-
-  var whatsappNumber = "213772560757";
-
-  window.open("https://wa.me/" + whatsappNumber + "?text=" + message, "_blank");
-}
-</script>
+</section>
 
 </body>
 </html>
