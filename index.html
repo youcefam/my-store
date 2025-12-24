@@ -2,148 +2,240 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>متجر إلكتروني</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+:root{
+  --main:#0f172a;
+  --accent:#22c55e;
+}
 body{
-  font-family: Arial, sans-serif;
-  background:#f2f2f2;
   margin:0;
+  font-family:Tahoma,Arial;
+  background:#f3f4f6;
 }
 header{
-  background:#111;
-  color:#fff;
+  background:var(--main);
+  color:white;
   padding:15px;
   text-align:center;
   font-size:22px;
 }
 .container{
-  max-width:420px;
-  margin:20px auto;
-  background:#fff;
+  max-width:1100px;
+  margin:auto;
   padding:15px;
-  border-radius:12px;
+}
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:15px;
 }
 .product{
-  border:1px solid #ddd;
-  border-radius:10px;
+  background:white;
+  border-radius:12px;
   padding:10px;
-  margin-bottom:15px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
 .product img{
   width:100%;
+  height:180px;
+  object-fit:cover;
   border-radius:10px;
 }
 .product h3{
-  margin:10px 0 5px;
+  margin:8px 0 5px;
+  font-size:16px;
 }
 .product p{
-  margin:0;
-  color:#555;
+  color:green;
+  font-weight:bold;
+  margin:0 0 8px;
 }
-select,input{
+.product button{
+  width:100%;
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:8px;
+  border-radius:6px;
+  font-size:15px;
+}
+
+.cart, .order{
+  background:white;
+  margin-top:20px;
+  padding:15px;
+  border-radius:12px;
+}
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:6px;
+}
+.cart-item span{
+  font-size:14px;
+}
+.cart-item button{
+  background:red;
+  color:white;
+  border:none;
+  padding:2px 6px;
+  border-radius:4px;
+}
+
+input,select{
   width:100%;
   padding:10px;
-  margin:8px 0;
+  margin:6px 0;
   border-radius:6px;
   border:1px solid #ccc;
 }
-button{
-  width:100%;
-  padding:14px;
-  background:#25D366;
+
+.send{
+  background:var(--accent);
   color:white;
+  padding:12px;
   border:none;
-  border-radius:10px;
+  width:100%;
+  border-radius:8px;
   font-size:18px;
 }
-.footer{
+
+.success{
+  display:none;
+  background:#dcfce7;
+  color:#166534;
+  padding:15px;
+  border-radius:10px;
+  margin-top:15px;
   text-align:center;
-  font-size:12px;
-  color:#777;
-  margin-top:10px;
+  font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<header>🛒 متجر الساعات والإكسسوارات</header>
+<header>🛒 متجر المنتجات المتنوعة</header>
 
 <div class="container">
 
-  <!-- اختيار المنتج -->
-  <label>اختر المنتج</label>
-  <select id="product">
-    <option value="ساعة رجالية فاخرة">ساعة رجالية فاخرة</option>
-    <option value="ساعة رياضية">ساعة رياضية</option>
-    <option value="محفظة رجالية">محفظة رجالية</option>
-  </select>
+<!-- المنتجات -->
+<div class="products">
+<script>
+const products=[
+["ساعة رجالية",4500],
+["ساعة رياضية",5200],
+["سماعة بلوتوث",3200],
+["نظارات شمسية",2500],
+["محفظة جلد",2800],
+["حزام رجالي",1900],
+["ساعة نسائية",4800],
+["سماعة رأس",5600],
+["شاحن سريع",2200],
+["باور بانك",6000],
+["عطر رجالي",7000],
+["عطر نسائي",6800],
+];
 
-  <!-- صورة المنتج -->
-  <img id="productImage" src="images/watch.jpg" style="width:100%;border-radius:10px;margin-top:10px;">
+products.forEach((p,i)=>{
+document.write(`
+<div class="product">
+<img src="images/product${i+1}.jpg">
+<h3>${p[0]}</h3>
+<p>${p[1]} دج</p>
+<button onclick="addToCart('${p[0]}',${p[1]})">إضافة للسلة</button>
+</div>
+`);
+});
+</script>
+</div>
 
-  <input id="name" placeholder="الاسم الكامل">
-  <input id="phone" placeholder="رقم الهاتف">
+<!-- السلة -->
+<div class="cart">
+<h3>🛍️ عربة التسوق</h3>
+<div id="cartItems"></div>
+<p><strong>المجموع:</strong> <span id="total">0</span> دج</p>
+</div>
 
-  <label>الولاية</label>
-  <select id="state">
-    <option value="">اختر الولاية</option>
-    <option>الجزائر</option><option>وهران</option><option>قسنطينة</option>
-    <option>عنابة</option><option>سطيف</option><option>باتنة</option>
-    <option>تيزي وزو</option><option>بجاية</option><option>البليدة</option>
-    <option>الشلف</option><option>سكيكدة</option><option>بسكرة</option>
-    <option>ورقلة</option><option>غرداية</option><option>تلمسان</option>
-    <option>تيارت</option><option>سعيدة</option><option>معسكر</option>
-    <option>أدرار</option><option>الوادي</option><option>خنشلة</option>
-    <option>سوق أهراس</option><option>ميلة</option><option>جيجل</option>
-    <option>قالمة</option><option>المدية</option><option>عين الدفلى</option>
-    <option>البيض</option><option>النعامة</option><option>تندوف</option>
-    <option>إليزي</option><option>تيميمون</option>
-  </select>
+<!-- الطلب -->
+<div class="order">
+<h3>🚚 الدفع عند الاستلام</h3>
 
-  <input id="qty" type="number" value="1" min="1" placeholder="الكمية">
+<input id="name" placeholder="الاسم الكامل">
+<input id="phone" placeholder="رقم الهاتف">
 
-  <button onclick="sendOrder()">اطلب عبر واتساب</button>
+<select id="state">
+<option value="">اختر الولاية</option>
+<option>الجزائر</option><option>وهران</option><option>قسنطينة</option>
+<option>عنابة</option><option>سطيف</option><option>باتنة</option>
+<option>بجاية</option><option>البليدة</option><option>الشلف</option>
+</select>
 
-  <div class="footer">📦 التوصيل لكل الولايات</div>
+<input id="city" placeholder="البلدية">
+
+<button class="send" onclick="sendOrder()">تأكيد الطلب</button>
+
+<div class="success" id="successMsg">
+✅ تم تسجيل طلبك بنجاح، سنتصل بك قريبًا
+</div>
+</div>
+
 </div>
 
 <script>
-const productSelect = document.getElementById("product");
-const productImage = document.getElementById("productImage");
+let cart=[];
 
-productSelect.onchange = function(){
-  if(this.value.includes("محفظة")){
-    productImage.src = "images/pag.jpg";
-  }else{
-    productImage.src = "images/watch.jpg";
-  }
-};
+function addToCart(name,price){
+let item=cart.find(i=>i.name===name);
+if(item){item.qty++;}
+else{cart.push({name,price,qty:1});}
+render();
+}
+
+function removeItem(name){
+cart=cart.filter(i=>i.name!==name);
+render();
+}
+
+function render(){
+let c=document.getElementById("cartItems");
+c.innerHTML="";
+let total=0;
+cart.forEach(i=>{
+total+=i.price*i.qty;
+c.innerHTML+=`
+<div class="cart-item">
+<span>${i.name} × ${i.qty}</span>
+<button onclick="removeItem('${i.name}')">×</button>
+</div>`;
+});
+document.getElementById("total").innerText=total;
+}
 
 function sendOrder(){
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let state = document.getElementById("state").value;
-  let qty = document.getElementById("qty").value;
-  let product = productSelect.value;
+if(cart.length===0){alert("السلة فارغة");return;}
+let name=nameInput.value=nameInput||document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let state=document.getElementById("state").value;
+let city=document.getElementById("city").value;
 
-  if(!name || !phone || !state){
-    alert("يرجى ملء جميع المعلومات");
-    return;
-  }
+if(!name||!phone||!state||!city){
+alert("يرجى ملء جميع الحقول");return;
+}
 
-  let message =
-  "🛒 طلب جديد\n\n"+
-  "📦 المنتج: "+product+"\n"+
-  "🔢 الكمية: "+qty+"\n"+
-  "👤 الاسم: "+name+"\n"+
-  "📞 الهاتف: "+phone+"\n"+
-  "📍 الولاية: "+state;
+let msg="🛒 طلب جديد%0A";
+cart.forEach(i=>{
+msg+=`- ${i.name} × ${i.qty}%0A`;
+});
+msg+=`%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالولاية: ${state}%0Aالبلدية: ${city}%0Aالدفع: عند الاستلام`;
 
-  let url = "https://wa.me/213772560757?text=" + encodeURIComponent(message);
-  window.open(url,"_blank");
+window.open("https://wa.me/213772560757?text="+msg,"_blank");
+document.getElementById("successMsg").style.display="block";
+cart=[];
+render();
 }
 </script>
 
