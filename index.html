@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>My Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>🛒 Ma Boutique</h1>
+
+  <!-- منتج -->
+  <div class="product">
+    <h2>Produit 1</h2>
+    <p>Prix : <span id="price">2500</span> DA</p>
+
+    <label>Quantité :</label>
+    <select id="quantity">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+  </div>
+
+  <!-- معلومات الزبون -->
+  <div class="form">
+    <input type="text" id="name" placeholder="Nom complet">
+    <input type="tel" id="phone" placeholder="Téléphone">
+
+    <label>Wilaya :</label>
+    <select id="wilaya">
+      <option>Alger</option>
+      <option>Oran</option>
+      <option>Constantine</option>
+      <option>Autre</option>
+    </select>
+
+    <button onclick="acheter()">Commander via WhatsApp</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
